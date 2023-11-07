@@ -10,6 +10,11 @@ alias install='sudo xbps-install'
 alias uninstall='sudo xbps-remove'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
+export PATH=~/bin:$PATH
+
+# MPD daemon start (if no other user instance exists)
+[ ! -s ~/.config/mpd/pid ] && mpd
+
 if [ -z "${WAYLAND_DISPLAY}" ] && [ "${XDG_VTNR}" -eq 1 ]; then
   dbus-run-session sway
 fi

@@ -6,12 +6,12 @@
 
 exec --no-startup-id dbus-update-activation-environment --all
 exec pipewire
-exec mpd
 exec nm-applet --indicator
 exec dunst
 exec light -I
 exec foot -s
 exec cliphist store
+exec udiskie
 
 exec swayidle -w \
     timeout 300 'swaylock -f' \
@@ -239,9 +239,6 @@ bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 bindsym XF86MonBrightnessDown exec light -U 5
 bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86AudioPlay exec playerctl play-pause
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
 bindsym $mod+e exec Thunar
 
 set $ps1 Print
@@ -259,4 +256,5 @@ bindsym $mod+shift+s exec grimshot copy area
 bindsym $mod+greater exec mpc next
 bindsym $mod+less exec mpc prev
 bindsym $mod+shift+p exec mpc toggle
-bindsym XF86PickupPhone exec 'mpc add / | mpc play'
+bindsym XF86PickupPhone exec 'mpc add / && mpc play'
+bindsym XF86HangupPhone exec 'mpc stop'
