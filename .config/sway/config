@@ -15,10 +15,8 @@ exec udiskie
 
 exec swayidle -w \
     timeout 300 'swaylock -f -c 000000' \
-    timeout 310 'swaymsg -q "output * power off"' \
-    resume 'swaymsg -q "output * power on"' \
-    timeout 600 'loginctl suspend' \
-    before-sleep 'mpc pause' \
+    timeout 300 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"'
 
 ### Variables
 #
