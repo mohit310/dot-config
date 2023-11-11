@@ -14,9 +14,11 @@ exec cliphist store
 exec udiskie
 
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
-    timeout 300 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"'
+    timeout 300 'swaylock -f -c ffffff' \
+    timeout 301 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'swaylock -f -c ffffff' \
+    before-sleep 'mpc pause'
 
 ### Variables
 #
