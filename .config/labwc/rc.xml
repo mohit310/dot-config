@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+
+<!--
+  This is a very simple config file with many options missing. For a complete
+  set of options with comments, see docs/rc.xml.all
+-->
+
+<labwc_config>
+
+  <core>
+    <gap>10</gap>
+  </core>
+
+  <theme>
+    <name>GTK</name>
+    <cornerRadius>8</cornerRadius>
+    <font name="MesloLGS NF" size="10" />
+  </theme>
+
+  <keyboard>
+    <default />
+
+    <keybind key="W-Return">
+      <action name="Execute" command="footclient" />
+    </keybind>
+
+    <keybind key="W-S">
+      <action name="Execute" command="wofi --show drun" />
+    </keybind>
+
+    <keybind key="W-l">
+      <action name="Execute" command="swaylock -f -c ffffff" />
+    </keybind>
+    
+    <keybind key="W-S-C">
+      <action name="Execute" command="labwc --reconfigure" />
+    </keybind>
+
+    <keybind key="W-e">
+      <action name="Execute" command="Thunar" />
+    </keybind>
+
+    <keybind key="XF86_AudioLowerVolume">
+      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ -5%" />
+    </keybind>
+
+    <keybind key="XF86_AudioRaiseVolume">
+      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ +5%" />
+    </keybind>
+   
+    <keybind key="XF86_AudioMute">
+        <action name="Execute" command="pactl set-sink-mute @DEFAULT_SINK@ toggle" />
+    </keybind>
+    
+    <keybind key="XF86_AudioMicMute">
+        <action name="Execute" command="pactl set-source-mute @DEFAULT_SOURCE@ toggle" />
+    </keybind>
+    
+    <keybind key="XF86_MonBrightnessUp">
+      <action name="Execute" command="light -A 5" />
+    </keybind>
+    
+    <keybind key="XF86_MonBrightnessDown">
+      <action name="Execute" command="light -U 5" />
+    </keybind>
+
+    <keybind key="W-greater">
+      <action name="Execute" command="mpc next" />
+    </keybind>
+    
+    <keybind key="W-less">
+      <action name="Execute" command="mpc prev" />
+    </keybind>
+    
+    <keybind key="W-S-p">
+      <action name="Execute" command="mpc toggle" />
+    </keybind>
+    
+    <keybind key="XF86_PickupPhone">
+        <action name="Execute" command="mpc add / && mpc play" />
+    </keybind>
+    
+    <keybind key="XF86_HangupPhone">
+      <action name="Execute" command="mpc stop" />
+    </keybind>
+  </keyboard>
+
+  <mouse>
+      <default />
+  </mouse>
+
+  <libinput>
+      <device category="SynPS/2 Synaptics TouchPad">
+      <naturalScroll>disabled</naturalScroll>
+      <accelProfile>adaptive</accelProfile>
+      <tap>yes</tap>
+      <tapButtonMap>lrm</tapButtonMap>
+      <middleEmulation>disabled</middleEmulation>
+      <disableWhileTyping>enabled</disableWhileTyping>
+    </device>
+  </libinput>
+
+
+
+</labwc_config>
