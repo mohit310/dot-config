@@ -8,11 +8,9 @@ exec --no-startup-id dbus-update-activation-environment --all
 exec pipewire
 exec nm-applet --indicator
 exec dunst
-exec light -I
 exec foot -s
-exec cliphist store
 exec udiskie
-
+exec wl-paste -t text --watch clipman store --no-persist
 exec swayidle -w \
     timeout 300 'swaylock -f -c ffffff' \
     timeout 301 'swaymsg "output * dpms off"' \
