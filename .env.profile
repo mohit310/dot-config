@@ -5,9 +5,9 @@ export GTK_USE_PORTAL=1
 alias vim='nvim'
 alias vi='nvim'
 alias reboot='sudo reboot'
-alias search='xbps-query'
-alias install='sudo xbps-install'
-alias uninstall='sudo xbps-remove'
+alias search='sudo emerge --search'
+alias install='sudo emerge --verbose --ask'
+alias uninstall='sudo emerge'
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
 export PATH=~/bin:$PATH
