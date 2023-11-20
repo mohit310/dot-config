@@ -5,17 +5,19 @@
 # Read `man 5 sway` for a complete reference.
 
 exec --no-startup-id dbus-update-activation-environment --all
-exec pipewire
-exec nm-applet --indicator
-exec dunst
+exec pulseaudio -D
+#exec nm-applet --indicator 
+# Notification Daemon
+exec swaync
 exec foot -s
-exec udiskie
-exec wl-paste -t text --watch clipman store --no-persist
+#exec udiskie
+#exec wl-paste -t text --watch clipman store --no-persist
+exec copyq
 exec swayidle -w \
-    timeout 300 'swaylock -f -c 000000' \
+    timeout 300 'swaylock --ignore-empty-password --show-failed-attempts --color 1e1e1e --inside-color cccccc --ring-color ffffff --inside-clear-color 11a8cd --ring-clear-color 29b8db --inside-ver-color 2472c8 --ring-ver-color 3b8eea --inside-wrong-color cd3131 --ring-wrong-color f14c4c' \
     timeout 300 'swaymsg "output * dpms off"' \
     resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c 000000' \
+    before-sleep 'swaylock --ignore-empty-password --show-failed-attempts --color 1e1e1e --inside-color cccccc --ring-color ffffff --inside-clear-color 11a8cd --ring-clear-color 29b8db --inside-ver-color 2472c8 --ring-ver-color 3b8eea --inside-wrong-color cd3131 --ring-wrong-color f14c4c' \
     before-sleep 'mpc pause'
 
 ### Variables
@@ -33,7 +35,7 @@ set $menu wofi --show drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/Pictures/mk1-wallpaper.jpg fill
+output * bg ~/pictures/gentoo.png fill
 #
 # Example configuration:
 #
@@ -57,7 +59,11 @@ output * bg ~/Pictures/mk1-wallpaper.jpg fill
 set $laptop eDP-1
 bindswitch --reload --locked lid:on output $laptop disable
 bindswitch --reload --locked lid:off output $laptop enable
-bindsym $mod+l exec loginctl suspend
+bindsym $mod+l exec swaylock --ignore-empty-password --show-failed-attempts \
+    --color 1e1e1e --inside-color cccccc --ring-color ffffff \
+    --inside-clear-color 11a8cd --ring-clear-color 29b8db \
+    --inside-ver-color 2472c8 --ring-ver-color 3b8eea \
+    --inside-wrong-color cd3131 --ring-wrong-color f14c4c
 
 ### Input configuration
 #
@@ -235,15 +241,21 @@ bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-bindsym XF86MonBrightnessDown exec light -U 5
-bindsym XF86MonBrightnessUp exec light -A 5
+
+#bindsym XF86AudioRaiseVolume exec amixer -Mq -c 1 sset Master 5%+ 
+#bindsym XF86AudioLowerVolume exec amixer -Mq -c 1 sset Master 5%-
+#bindsym XF86AudioMute exec amixer sset Master toggle
+#bindsym XF86AudioMicMute exec amixer set Capture toggle
+
+bindsym XF86MonBrightnessDown exec xbacklight -dec 4
+bindsym XF86MonBrightnessUp exec xbacklight -inc 4
 bindsym $mod+e exec Thunar
 
 set $ps1 Print
 set $ps2 Control+Print
 set $ps3 Alt+Print
 set $ps4 Alt+Control+Print
-set $psf $(xdg-user-dir PICTURES)/ps_$(date +"%Y%m%d%H%M%S").png
+set $psf ~/pictures/ps_$(date +"%Y%m%d%H%M%S").png
 
 bindsym $ps1 exec grim - | wl-copy
 bindsym $ps2 exec grim -g "$(slurp)" - | wl-copy
@@ -256,3 +268,6 @@ bindsym $mod+less exec mpc prev
 bindsym $mod+shift+p exec mpc toggle
 bindsym XF86PickupPhone exec 'mpc add / && mpc play'
 bindsym XF86HangupPhone exec 'mpc stop'
+
+# Toggle control center
+bindsym $mod+Shift+b exec swaync-client -t -sw
