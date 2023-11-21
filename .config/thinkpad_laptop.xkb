@@ -1,0 +1,12 @@
+xkb_keymap {
+    xkb_keycodes { include "evdev+aliases(qwerty)" };
+    xkb_types { include "complete" };
+    xkb_compat { include "complete" };
+    xkb_symbols {
+        include "pc"
+        include "us"
+        include "inet(evdev)"
+        replace key <I226> { [ XF86AudioNext ] };
+        replace key <I231> { [ XF86AudioPrev ] };
+    };
+};

@@ -5,14 +5,12 @@
 # Read `man 5 sway` for a complete reference.
 
 exec --no-startup-id dbus-update-activation-environment --all
-exec pulseaudio -D
-#exec nm-applet --indicator 
+exec nm-applet --indicator 
 # Notification Daemon
 exec swaync
 exec foot -s
-#exec udiskie
+exec udiskie
 #exec wl-paste -t text --watch clipman store --no-persist
-exec copyq
 exec swayidle -w \
     timeout 300 'swaylock --ignore-empty-password --show-failed-attempts --color 1e1e1e --inside-color cccccc --ring-color ffffff --inside-clear-color 11a8cd --ring-clear-color 29b8db --inside-ver-color 2472c8 --ring-ver-color 3b8eea --inside-wrong-color cd3131 --ring-wrong-color f14c4c' \
     timeout 300 'swaymsg "output * dpms off"' \
@@ -35,7 +33,7 @@ set $menu wofi --show drun
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg ~/pictures/gentoo.png fill
+output * bg ~/Pictures/arch-1.jpg fill
 #
 # Example configuration:
 #
@@ -87,6 +85,10 @@ input "type:touchpad" {
        middle_emulation disabled
        click_method clickfinger
        accel_profile adaptive
+}
+
+input "type:keyboard" {
+    xkb_file $HOME/.config/thinkpad_laptop.xkb
 }
 
 
@@ -237,19 +239,24 @@ bar {
 
 include /etc/sway/config.d/*
 
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+bindsym XF86AudioRaiseVolume exec pulsemixer --change-volume +5 --max-volume 150
+bindsym XF86AudioLowerVolume exec pulsemixer --change-volume -5 --max-volume 150
+bindsym XF86AudioMute exec pulsemixer --toggle-mute
+bindsym XF86AudioMicMute exec pulsemixer --id source-48 --toggle-mute
+
+#bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+#bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+#bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+#bindsym XF86AudioMicMute exec 
 
 #bindsym XF86AudioRaiseVolume exec amixer -Mq -c 1 sset Master 5%+ 
 #bindsym XF86AudioLowerVolume exec amixer -Mq -c 1 sset Master 5%-
 #bindsym XF86AudioMute exec amixer sset Master toggle
 #bindsym XF86AudioMicMute exec amixer set Capture toggle
 
-bindsym XF86MonBrightnessDown exec xbacklight -dec 4
-bindsym XF86MonBrightnessUp exec xbacklight -inc 4
-bindsym $mod+e exec Thunar
+bindsym XF86MonBrightnessDown exec brightnessctl set 5%- 
+bindsym XF86MonBrightnessUp exec brightnessctl set 5%+ 
+bindsym $mod+e exec nautilus
 
 set $ps1 Print
 set $ps2 Control+Print
@@ -263,11 +270,11 @@ bindsym $ps3 exec grim $psf
 bindsym $ps4 exec grim -g "$(slurp)" $psf
 bindsym $mod+shift+s exec grimshot copy area
 
-bindsym $mod+greater exec mpc next
-bindsym $mod+less exec mpc prev
+bindsym XF86AudioNext exec mpc next
+bindsym XF86AudioPrev exec mpc prev
 bindsym $mod+shift+p exec mpc toggle
-bindsym XF86PickupPhone exec 'mpc add / && mpc play'
-bindsym XF86HangupPhone exec 'mpc stop'
+bindsym XF86Messenger exec 'mpc add / && mpc play'
+bindsym XF86Favorites exec 'mpc toggle'
 
 # Toggle control center
 bindsym $mod+Shift+b exec swaync-client -t -sw

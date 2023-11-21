@@ -2,8 +2,9 @@
 #export GDK_BACKEND=wayland
 #export GTK_USE_PORTAL=1
 
-alias vim='nvim'
-alias vi='nvim'
+alias vim='nvim '
+alias vi='nvim '
+alias view='nvim -R '
 alias reboot='sudo reboot'
 alias search='sudo pacman -Ss '
 alias install='sudo pacman -S '
@@ -20,7 +21,9 @@ export PATH=~/bin:$PATH
 #fi
 
 if [[ -z $DISPLAY && $(tty) == /dev/tty1 && $XDG_SESSION_TYPE == tty ]]; then
-	MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+	#MOZ_ENABLE_WAYLAND=1 QT_QPA_PLATFORM=wayland XDG_SESSION_TYPE=wayland exec dbus-run-session gnome-session
+    pgrep -x mpd >/dev/null || exec mpd &
+    dbus-launch --exit-with-session sway
 fi
 
 
