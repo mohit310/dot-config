@@ -1,0 +1,68 @@
+icons_format = "{icon}"
+
+[theme]
+theme = "modern"
+[theme.overrides]
+idle_bg = "#123456"
+#idle_fg = "#abcdef"
+
+[icons]
+icons = "material"
+[icons.overrides]
+#bat = ["|E|", "|_|", "|=|", "|F|"]
+#bat_charging = "|^| "
+
+[[block]]
+block = "music"
+format = " $icon {$combo.str(max_w:20) $play $next |}"
+player = "mpd"
+
+[[block]]
+block = "battery"
+format = " $percentage {$time |} "
+
+[[block]]
+block = "backlight"
+
+[[block]]
+block = "cpu"
+
+[[block]]
+block = "memory"
+format = " $icon $mem_total_used_percents.eng(w:2) "
+format_alt = " $icon_swap $swap_used_percents.eng(w:2) "
+
+[[block]]
+block = "sound"
+format = " $icon $output_name{ $volume|} "
+[block.mappings]
+"alsa_output.pci-0000_05_00.6.HiFi__hw_Generic_1__sink" = "Speakers"
+"alsa_input.pci-0000_05_00.6.HiFi__hw_acp__source" = "Headset"
+[[block.click]]
+button = "left"
+cmd = "pavucontrol"
+
+#[[block]]
+#block = "net"
+#format = " $icon {$ssid} "
+
+[[block]]
+block = "time"
+interval = 5
+format = " $timestamp.datetime(f:'%a %m/%d %R') "
+
+#[[block]]
+#block = "menu"
+#text = "\uf011"
+#[[block.items]]
+#display = "Sleep"
+#cmd = "systemctl suspend"
+#[[block.items]]
+#display = "Power Off"
+#cmd = "poweroff"
+#confirm_msg = "Are you sure you want to power off?"
+#[[block.items]]
+#display = "Reboot"
+#cmd = "reboot"
+#confirm_msg = "Are you sure you want to reboot?"
+

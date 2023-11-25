@@ -10,7 +10,6 @@ exec nm-applet --indicator
 exec swaync
 exec foot -s
 exec udiskie
-exec mpDris2
 exec swayidle -w \
     timeout 300 'swaylock --ignore-empty-password --show-failed-attempts --color 1e1e1e --inside-color cccccc --ring-color ffffff --inside-clear-color 11a8cd --ring-clear-color 29b8db --inside-ver-color 2472c8 --ring-ver-color 3b8eea --inside-wrong-color cd3131 --ring-wrong-color f14c4c' \
     timeout 300 'swaymsg "output * dpms off"' \
@@ -28,7 +27,7 @@ set $term footclient
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
 #set $menu dmenu_path | dmenu | xargs swaymsg exec --
-set $menu wofi --show drun --allow-images -D key_expand=Tab
+set $menu wofi --show drun
 
 ### Output configuration
 #
@@ -224,7 +223,7 @@ bindsym $mod+r mode "resize"
 #
 # Read `man 5 sway-bar` for more information about this section.
 bar {
-    #swaybar_command waybar 
+    swaybar_command waybar 
 
     # When the status_command prints a new line to stdout, swaybar updates.
     # The default just shows the current date and time.
@@ -235,19 +234,6 @@ bar {
 #        background #323232
 #        inactive_workspace #32323200 #32323200 #5c5c5c
 #    }
-
-    font pango:DejaVu Sans Mono, MesloLGS NF:style=Regular 11
-    position top
-    height 25
-    status_padding 0
-    tray_output none
-    status_command ~/bin/i3status-rs
-    colors {
-        statusline #00ff00
-        background #676767
-        inactive_workspace #32323200 #32323200 #5c5c5c
-    }
-
 }
 
 include /etc/sway/config.d/*
