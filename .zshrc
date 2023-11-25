@@ -20,6 +20,7 @@ zstyle :compinstall filename '/home/mk/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+POWERLEVEL9K_DISABLE_GITSTATUS=true
 source ~/installs/powerlevel10k/powerlevel10k.zsh-theme
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.

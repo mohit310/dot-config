@@ -8,6 +8,7 @@ alias view='nvim -R '
 alias reboot='sudo reboot'
 alias search='sudo pacman -Ss '
 alias install='sudo pacman -S '
+alias upgrade='sudo pacman -Syu '
 alias uninstall='sudo pacman -Rdd '
 alias config='/usr/bin/git --git-dir=$HOME/.cfg/ --work-tree=$HOME'
 
