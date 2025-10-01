@@ -1,7 +1,7 @@
 # Example autostart file
 
 # Set background color.
-swaybg -i ~/Pictures/mk1-wallpaper.jpg -m fill >/dev/null 2>&1 &
+swaybg -i ~/Pictures/gentoo-wallpaper-4.png -m fill >/dev/null 2>&1 &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
@@ -13,7 +13,8 @@ swaybg -i ~/Pictures/mk1-wallpaper.jpg -m fill >/dev/null 2>&1 &
 #kanshi >/dev/null 2>&1 &
 
 # Launch a panel such as yambar or waybar.
-waybar >/dev/null 2>&1 &
+#waybar >/dev/null 2>&1 &
+xfce4-panel &
 
 # Enable notifications. Typically GNOME/KDE application notifications go
 # through the org.freedesktop.Notifications D-Bus API and require a client such
@@ -28,17 +29,16 @@ dunst >/dev/null 2>&1 &
 # (since a837fef). Instead use a wlr-output-power-management client such as
 # https://git.sr.ht/~leon_plickat/wlopm
 swayidle -w \
-    timeout 300 'swaylock -f -c ffffff' \
-    timeout 301 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
-    before-sleep 'swaylock -f -c ffffff' \
-    before-sleep 'mpc pause'
-
+    timeout 600 'swaylock -f -c ffffff' \
+    before-sleep 'swaylock -f -c ffffff' &
 
 dbus-update-activation-environment --all >/dev/null 2>&1 &
-pipewire >/dev/null 2>&1 &
-nm-applet --indicator >/dev/null 2>&1 &
-light -I >/dev/null 2>&1 &
-foot -s >/dev/null 2>&1 &
-cliphist store >/dev/null 2>&1 &
+gentoo-pipewire-launcher restart &
+/usr/libexec/xdg-desktop-portal-wlr &
+/usr/libexec/xdg-desktop-portal &
+#pipewire >/dev/null 2>&1 &
+#light -I >/dev/null 2>&1 &
+#foot -s >/dev/null 2>&1 &
+#cliphist store >/dev/null 2>&1 &
 udiskie >/dev/null 2>&1 &
+nm-applet >/dev/null 2>&1 &

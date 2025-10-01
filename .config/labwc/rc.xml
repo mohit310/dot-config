@@ -11,20 +11,26 @@
     <gap>10</gap>
   </core>
 
+  
   <theme>
-    <name>GTK</name>
+    <name>Arc-Clone</name>
     <cornerRadius>8</cornerRadius>
-    <font name="MesloLGS NF" size="10" />
+    <font name="JetBrainsMonoNL Nerd Font" size="10" />
   </theme>
+  
 
   <keyboard>
     <default />
 
-    <keybind key="W-Return">
-      <action name="Execute" command="footclient" />
+    <keybind key="W-a">
+	<action name="Iconify"/>
     </keybind>
 
-    <keybind key="W-S">
+    <keybind key="W-Return">
+      <action name="Execute" command="alacritty" />
+    </keybind>
+
+    <keybind key="W-z">
       <action name="Execute" command="wofi --show drun" />
     </keybind>
 
@@ -32,7 +38,7 @@
       <action name="Execute" command="swaylock -f -c ffffff" />
     </keybind>
     
-    <keybind key="W-S-C">
+    <keybind key="W-S-p">
       <action name="Execute" command="labwc --reconfigure" />
     </keybind>
 
@@ -41,48 +47,41 @@
     </keybind>
 
     <keybind key="XF86_AudioLowerVolume">
-      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ -5%" />
+      <action name="Execute" command="wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-" />
     </keybind>
 
     <keybind key="XF86_AudioRaiseVolume">
-      <action name="Execute" command="pactl set-sink-volume @DEFAULT_SINK@ +5%" />
+      <action name="Execute" command="wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+" />
     </keybind>
    
     <keybind key="XF86_AudioMute">
-        <action name="Execute" command="pactl set-sink-mute @DEFAULT_SINK@ toggle" />
+        <action name="Execute" command="wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle" />
     </keybind>
     
     <keybind key="XF86_AudioMicMute">
-        <action name="Execute" command="pactl set-source-mute @DEFAULT_SOURCE@ toggle" />
+        <action name="Execute" command="wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle" />
     </keybind>
     
     <keybind key="XF86_MonBrightnessUp">
-      <action name="Execute" command="light -A 5" />
+      <action name="Execute" command="brightnessctl set +5%" />
     </keybind>
     
     <keybind key="XF86_MonBrightnessDown">
-      <action name="Execute" command="light -U 5" />
+      <action name="Execute" command="brightnessctl set 5%-" />
+    </keybind>
+    
+    <keybind key="C-A-Delete">
+        <action name="Execute">
+            <command>labwc --exit</command>
+        </action>
     </keybind>
 
-    <keybind key="W-greater">
-      <action name="Execute" command="mpc next" />
+    <keybind key="Print">
+  	<action name="Execute">
+    	<command>sh -c 'grim -g "$(slurp)" ~/Pictures/Screenshots/$(date +%Y-%m-%d_%H-%M-%S).jpg'</command>
+  	</action>
     </keybind>
-    
-    <keybind key="W-less">
-      <action name="Execute" command="mpc prev" />
-    </keybind>
-    
-    <keybind key="W-S-p">
-      <action name="Execute" command="mpc toggle" />
-    </keybind>
-    
-    <keybind key="XF86_PickupPhone">
-        <action name="Execute" command="mpc add / && mpc play" />
-    </keybind>
-    
-    <keybind key="XF86_HangupPhone">
-      <action name="Execute" command="mpc stop" />
-    </keybind>
+
   </keyboard>
 
   <mouse>
@@ -97,9 +96,15 @@
       <tapButtonMap>lrm</tapButtonMap>
       <middleEmulation>disabled</middleEmulation>
       <disableWhileTyping>enabled</disableWhileTyping>
+      <clickMethod>clickfinger</clickMethod>
+      <scrollMethod>twofinger</scrollMethod>
     </device>
   </libinput>
 
-
-
+  <windowSwitcher show="yes" style="classic" preview="yes" outlines="yes" allWorkspaces="yes">
+    <fields>
+      <field content="desktop_entry_name" width="40%" />
+      <field content="title" width="60%" />
+    </fields>
+  </windowSwitcher>
 </labwc_config>
