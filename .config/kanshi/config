@@ -1,0 +1,10 @@
+profile {
+  output eDP-1 {
+    # Enable the output
+    enable
+    # Set the scale factor to 1.5. You can adjust this value.
+    scale 1.25
+    # Optional: You can also specify the display mode
+    mode 1920x1080@60Hz
+  }
+}

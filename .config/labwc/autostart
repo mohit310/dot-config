@@ -1,7 +1,19 @@
 # Example autostart file
 
+#wlr-randr settings
+#wlr-randr --output eDP-1 --scale 1.2 >/dev/null 2>&1 &
+
+# Configure output directives such as mode, position, scale and transform.
+# Use wlr-randr to get your output names
+# Example ~/.config/kanshi/config below:
+#   profile {
+#     output HDMI-A-1 position 1366,0
+#     output eDP-1 position 0,0
+#   }
+kanshi >/dev/null 2>&1 &
+
 # Set background color.
-swaybg -i ~/Pictures/gentoo-wallpaper-4.png -m fill >/dev/null 2>&1 &
+swaybg -i ~/Pictures/gentoo-cow.png -m fill >/dev/null 2>&1 &
 
 # Configure output directives such as mode, position, scale and transform.
 # Use wlr-randr to get your output names
